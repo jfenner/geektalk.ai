@@ -25,12 +25,12 @@ pip install -r requirements.txt
 After that, simply run the `geektalk.py` file to start the chatbot:
 
 ```
-python geektalk.py
+python chatgpt-news.py
 ```
 
 ## Usage
 
-Once the chatbot is running, you can start engaging in conversation with it by typing in your messages. The chatbot will respond with its own messages based on the context of the conversation. You can talk about a wide range of topics, including movies, TV shows, video games, comic books, and more.
+The app is designed to run on a preset schedule as a cron-job in order to generate content.  
 
 ## Contributing
 
