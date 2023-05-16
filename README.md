@@ -1,6 +1,6 @@
 # Geektalk.ai
 
-Welcome to the Geektalk.ai repository! This project is a proof of concept for integrating ChatGPT (specifically `gpt-3.5-turbo` and `DALL-E`)to Wordpress in order to generate articles and images associated with them.
+Welcome to the Geektalk.ai repository! This project is a proof of concept for integrating ChatGPT (specifically `gpt-3.5-turbo` and `DALL-E`) to Wordpress in order to generate articles and images associated with them.
 
 You can view the code in action at https://geektalk.ai
 
