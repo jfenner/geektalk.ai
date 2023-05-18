@@ -1,8 +1,10 @@
+import random
 import traceback
 from chatgpt import ChatGPT
 from wordpress import Wordpress
 from decouple import config, Csv
 import logging
+import sqlite3
 
 # Read the config
 LOG_LEVEL = config("LOGGING_LEVEL", default="WARNING")
@@ -36,10 +38,17 @@ tone = "Professional"
 
 try:
     # Generate a topic
-    topic_prompt = "Give me a geek topic. Limit it to 256 characters."
-    logging.info(topic_prompt)
-    prompt = chatGPT.generateContent(topic_prompt)
-    logging.info(prompt)
+    # First attempt was to use ChatGPT "Give me a geek topic. Limit it to 256 characters." . 
+    # But that always came back with something related to Quantum Computers
+    # So instead we'll pull a random prompt from a list of prompts
+    conn = sqlite3.connect('chatgpt.db')
+    c = conn.cursor()
+    c.execute("SELECT prompt FROM prompts WHERE used = FALSE ORDER BY RANDOM() LIMIT 1")
+    prompt = c.fetchone()[0]
+    c.execute("UPDATE prompts SET used = TRUE WHERE prompt = ?", (prompt,))
+    conn.commit()
+    logging.info(f"Prompt: {prompt}")
+    conn.close()
 
     # Generate the title for the article
     title_prompt = "Write a title for an article about '{PROMPT}'. "\
